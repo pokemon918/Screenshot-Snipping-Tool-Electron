@@ -7,6 +7,8 @@ function createWindow() {
         width: 800,
         height: 600,
         frame: false,
+        transparent: true,
+        titleBarStyle: 'customButtonsOnHover',
         webPreferences: {
             nodeIntegration: true
         }
