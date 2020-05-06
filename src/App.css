@@ -12,6 +12,10 @@
   font-size: calc(10px + 2vmin);
 }
 
+button {
+  -webkit-app-region: no-drag;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
