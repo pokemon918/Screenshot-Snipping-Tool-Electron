@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+const { ipcRenderer, remote } = require('electron');
 
 let win;
 
