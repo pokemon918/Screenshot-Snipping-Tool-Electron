@@ -4,14 +4,15 @@
   "private": true,
   "author": "Aleksey Belchenkov",
   "dependencies": {
-    "@blueprintjs/core": "^3.26.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "@blueprintjs/core": "*",
+    "@testing-library/jest-dom": "*",
+    "@testing-library/react": "*",
+    "@testing-library/user-event": "*",
+    "react": "*",
+    "react-app-rewired": "*",
+    "react-dom": "*",
+    "react-router-dom": "*",
+    "react-scripts": "*"
   },
   "homepage": ".",
   "scripts": {
@@ -38,6 +39,6 @@
     ]
   },
   "devDependencies": {
-    "electron": "^8.2.5"
+    "electron": "*"
   }
 }

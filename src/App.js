@@ -6,14 +6,24 @@ import './App.css';
 function App() {
   const onSnipClick = async () => {
       console.log('todo: making screenshot');
-      console.log(window);
+
       const { desktopCapturer, remote } = window.require('electron');
       const screen = remote.screen;
 
       try {
+          const screenSize = screen.getPrimaryDisplay().workAreaSize;
+          const maxDimension = Math.max(
+              screenSize.width,
+              screenSize.height
+          );
           const sources = await desktopCapturer.getSources({
-              types: ['screen']
+              types: ['screen'],
+              thumbnailSize: {
+                  width: maxDimension * window.devicePixelRatio,
+                  height: maxDimension * window.devicePixelRatio
+              }
           });
+
           const entireScreenSource = sources
               .find(source => source.name === 'Entire Screen' || source.name === 'Screen 1');
 
@@ -23,6 +33,8 @@ function App() {
       } catch (err) {
           console.error(err);
       }
+
+
   };
 
   return (

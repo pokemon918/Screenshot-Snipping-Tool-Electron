@@ -1,18 +1,19 @@
 const { app, BrowserWindow } = require('electron');
-const { ipcRenderer, remote } = require('electron');
+const { ipcRenderer } = window.require('electron');
 
 let win;
 
 function createWindow() {
     win = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: false,
+            preload: __dirname + '/preload.js'
+        },
         width: 800,
         height: 600,
         frame: false,
         transparent: true,
         titleBarStyle: 'customButtonsOnHover',
-        webPreferences: {
-            nodeIntegration: true
-        }
     });
 
     if (process.env.DEBUG) {
