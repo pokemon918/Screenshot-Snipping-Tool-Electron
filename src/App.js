@@ -7,8 +7,11 @@ function App() {
   const onSnipClick = async () => {
       console.log('todo: making screenshot');
 
-      const { desktopCapturer, remote } = window.require('electron');
+      const { desktopCapturer, remote, shell } = window.require('electron');
       const screen = remote.screen;
+      const path = window.require('path');
+      const os = window.require('os');
+      const fs = window.require('fs');
 
       try {
           const screenSize = screen.getPrimaryDisplay().workAreaSize;
@@ -24,11 +27,20 @@ function App() {
               }
           });
 
-          const entireScreenSource = sources
-              .find(source => source.name === 'Entire Screen' || source.name === 'Screen 1');
+          const entireScreenSource = sources.find(
+              source => source.name === 'Entire Screen' || source.name === 'Screen 1'
+          );
 
           if (entireScreenSource) {
-              console.log(entireScreenSource);
+              const outputPath = path.join(os.tmpdir(), 'screenshot.png');
+              const image = entireScreenSource.thumbnail.toPNG();
+
+              fs.writeFile(outputPath, image, err => {
+                  if (err) return console.error(err);
+                  shell.openExternal(`file://${outputPath}`);
+              });
+          else {
+                  window.alert('Screen source not found.');
           }
       } catch (err) {
           console.error(err);
