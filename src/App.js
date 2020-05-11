@@ -5,8 +5,6 @@ import './App.css';
 
 function App() {
   const onSnipClick = async () => {
-      console.log('todo: making screenshot');
-
       const { desktopCapturer, remote, shell } = window.require('electron');
       const screen = remote.screen;
       const path = window.require('path');
