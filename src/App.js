@@ -12,6 +12,10 @@ function App() {
       const path = window.require('path');
       const os = window.require('os');
       const fs = window.require('fs');
+      const win = remote.getCurrentWindow();
+      const windowRect = win.getBounds();
+
+      win.hide();
 
       try {
           const screenSize = screen.getPrimaryDisplay().workAreaSize;
@@ -33,20 +37,27 @@ function App() {
 
           if (entireScreenSource) {
               const outputPath = path.join(os.tmpdir(), 'screenshot.png');
-              const image = entireScreenSource.thumbnail.toPNG();
+
+              const image = entireScreenSource.thumbnail
+                  .resize({
+                      width: screenSize.width,
+                      height: screenSize.height
+                  })
+                  .crop(windowRect)
+                  .toPNG();
 
               fs.writeFile(outputPath, image, err => {
+                  win.show();
+
                   if (err) return console.error(err);
                   shell.openExternal(`file://${outputPath}`);
               });
-          else {
+          } else {
                   window.alert('Screen source not found.');
           }
       } catch (err) {
           console.error(err);
       }
-
-
   };
 
   return (
