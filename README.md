@@ -2,6 +2,8 @@
 
 > Build a small screenshot snipping tool using the latest Electron framework, React.js, and the Blueprint UI toolkit for React.
 
+### [Demo](https://github.com/Belchenkov/screenshot_snipping_tool_electron/releases/tag/master)
+
 ## Installing
 
 ```sh
