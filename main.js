@@ -48,6 +48,8 @@ function createWindow() {
         resizable: true
     });
 
+    win.hide();
+
     if (process.env.DEBUG) {
         win.loadURL(`http://localhost:3000`);
     } else {

@@ -1,5 +1,5 @@
 {
-  "name": "integrate-react",
+  "name": "screenshot_snipping_tool_electron",
   "version": "0.1.0",
   "private": true,
   "author": "Aleksey Belchenkov",
@@ -18,9 +18,13 @@
   "scripts": {
     "serve": "react-scripts start",
     "start": "SET DEBUG=true && electron .",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "react-scripts build",
+    "build:macos": "electron-builder --macos --dir",
+    "build:windows": "electron-builder --windows --dir",
+    "build:linux": "electron-builder --linux --dir",
+    "publish:github": "build --windows -p always"
   },
   "main": "main.js",
   "eslintConfig": {
@@ -39,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "*"
+    "electron": "*",
+    "electron-builder": "^22.6.0"
   }
 }
